@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 320px;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+      color: white;
+      margin: 0;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .header h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .browser-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 15px;
+      padding: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+    
+    .current-mode {
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .mode-indicator {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    
+    .mode-name {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    
+    .mode-time {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .manual-controls {
+      margin-bottom: 20px;
+    }
+    
+    .manual-controls h3 {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .theme-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .theme-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .theme-btn.day {
+      background: #4A90E2;
+      color: white;
+    }
+    
+    .theme-btn.evening {
+      background: #FF8C42;
+      color: white;
+    }
+    
+    .theme-btn.night {
+      background: #9B59B6;
+      color: white;
+    }
+    
+    .theme-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .theme-btn.active {
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
+    }
+    
+    .status {
+      background: rgba(255,255,255,0.1);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      text-align: center;
+    }
+    
+    .sync-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #00ff88;
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+    
+    .test-controls {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .test-btn {
+      width: 100%;
+      padding: 8px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 11px;
+      cursor: pointer;
+      margin-bottom: 5px;
+    }
+    
+    .test-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .edge-specific {
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+      font-size: 11px;
+      text-align: center;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎨 HazeOver Theme Sync</h1>
+  </div>
+  
+  <div class="browser-indicator">
+    <span>🔗</span>
+    <span>Microsoft Edge Canary</span>
+  </div>
+  
+  <div class="current-mode">
+    <div class="mode-indicator" id="modeIcon">🌅</div>
+    <div class="mode-name" id="modeName">Day Mode</div>
+    <div class="mode-time" id="modeTime">07:00 - 17:30</div>
+  </div>
+  
+  <div class="manual-controls">
+    <h3>Manual Override</h3>
+    <div class="theme-buttons">
+      <button class="theme-btn day" id="dayBtn">🌅 Day</button>
+      <button class="theme-btn evening" id="eveningBtn">🌆 Evening</button>
+      <button class="theme-btn night" id="nightBtn">🌙 Night</button>
+    </div>
+  </div>
+  
+  <div class="status">
+    <span class="sync-indicator"></span>
+    <span id="statusText">Synced with HazeOver</span>
+  </div>
+  
+  <div class="test-controls">
+    <button class="test-btn" id="testBtn">🧪 Test Current Theme</button>
+    <button class="test-btn" id="clearBtn">🔄 Clear Override</button>
+  </div>
+  
+  <div class="edge-specific">
+    <strong>Edge Canary Optimized</strong><br>
+    Supports latest Chromium features
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
