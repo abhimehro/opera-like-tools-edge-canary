@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HazeOver Settings - Orion Edition</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(20px);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+        
+        .badge {
+            background: rgba(76, 175, 80, 0.3);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            display: inline-block;
+        }
+        
+        .section {
+            margin-bottom: 32px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .setting {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .setting:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .setting-label {
+            flex: 1;
+        }
+        
+        .setting-description {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+        
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle.active {
+            background: rgba(76, 175, 80, 0.6);
+        }
+        
+        .toggle-handle {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle.active .toggle-handle {
+            transform: translateX(22px);
+        }
+        
+        .save-button {
+            background: rgba(76, 175, 80, 0.8);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 24px;
+        }
+        
+        .save-button:hover {
+            background: rgba(76, 175, 80, 1);
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 32px;
+            opacity: 0.7;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">🌟 HazeOver Settings</div>
+            <div class="subtitle">Privacy-First Theming</div>
+            <div class="badge">⚡ WebKit Optimized for Orion</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">🎨 Theme Settings</div>
+            
+            <div class="setting">
+                <div class="setting-label">
+                    <div>Auto Theme Switching</div>
+                    <div class="setting-description">Automatically switch between light and dark themes based on system settings</div>
+                </div>
+                <div class="toggle" id="autoTheme">
+                    <div class="toggle-handle"></div>
+                </div>
+            </div>
+            
+            <div class="setting">
+                <div class="setting-label">
+                    <div>Hardware Acceleration</div>
+                    <div class="setting-description">Use WebKit hardware acceleration for smoother theme transitions</div>
+                </div>
+                <div class="toggle active" id="hardwareAccel">
+                    <div class="toggle-handle"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">🛡️ Privacy Settings</div>
+            
+            <div class="setting">
+                <div class="setting-label">
+                    <div>Zero Telemetry Mode</div>
+                    <div class="setting-description">Completely disable all data collection and external requests</div>
+                </div>
+                <div class="toggle active" id="zeroTelemetry">
+                    <div class="toggle-handle"></div>
+                </div>
+            </div>
+            
+            <div class="setting">
+                <div class="setting-label">
+                    <div>Local Storage Only</div>
+                    <div class="setting-description">Store all settings locally without any cloud synchronization</div>
+                </div>
+                <div class="toggle active" id="localOnly">
+                    <div class="toggle-handle"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">⚡ Performance Settings</div>
+            
+            <div class="setting">
+                <div class="setting-label">
+                    <div>Orion Ad Blocker Integration</div>
+                    <div class="setting-description">Optimize theme loading to work seamlessly with Orion's built-in ad blocker</div>
+                </div>
+                <div class="toggle active" id="adBlockerCompat">
+                    <div class="toggle-handle"></div>
+                </div>
+            </div>
+            
+            <div class="setting">
+                <div class="setting-label">
+                    <div>Mobile Optimization</div>
+                    <div class="setting-description">Enable optimizations for iOS/iPadOS when using Orion mobile</div>
+                </div>
+                <div class="toggle active" id="mobileOptim">
+                    <div class="toggle-handle"></div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="save-button" id="saveSettings">
+            💾 Save Settings
+        </button>
+        
+        <div class="footer">
+            HazeOver Orion Edition - Privacy-First Theming<br>
+            Zero telemetry • WebKit optimized • macOS native
+        </div>
+    </div>
+    
+    <script src="options.js"></script>
+</body>
+</html>
