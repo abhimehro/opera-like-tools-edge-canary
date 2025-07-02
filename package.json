@@ -1,0 +1,43 @@
+{
+  "name": "opera-like-tools-edge-canary",
+  "version": "1.0.0",
+  "description": "Opera-like Tools for Microsoft Edge Canary - Automatically sync Microsoft Edge Canary's appearance with HazeOver focus modes",
+  "main": "src/background.js",
+  "scripts": {
+    "build": "npm run package:edge",
+    "build:opera": "bash scripts/build_opera.sh",
+    "package:edge": "web-ext build --source-dir=extensions/edge-canary/dist --artifacts-dir=dist --filename=edge-canary-hazeover-sync.zip",
+    "package:opera": "web-ext build --source-dir=extensions/opera/dist --artifacts-dir=dist --overwrite-dest --filename=opera-hazeover-sync.zip",
+    "test": "echo 'No tests specified'",
+    "lint": "web-ext lint --source-dir=extensions/edge-canary/dist",
+    "lint:opera": "web-ext lint --source-dir=extensions/opera/dist",
+    "package": "npm run package:edge"
+  },
+  "keywords": [
+    "edge",
+    "canary",
+    "opera",
+    "extension",
+    "theme",
+    "hazeover",
+    "browser",
+    "tools"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/opera-like-tools-edge-canary.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/opera-like-tools-edge-canary/issues"
+  },
+  "homepage": "https://github.com/yourusername/opera-like-tools-edge-canary#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "private": true,
+  "dependencies": {
+    "web-ext": "^8.8.0"
+  }
+}

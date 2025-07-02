@@ -1,0 +1,110 @@
+{
+  "manifest_version": 3,
+  "name": "HazeOver Theme Sync - Orion Edition",
+  "version": "1.0.0",
+  "description": "Privacy-first theme switching optimized for Orion RC Browser. Zero telemetry, WebKit-accelerated theming.",
+  
+  "author": "HazeOver Theme Sync Team",
+  "homepage_url": "https://github.com/hazeoverthemesync/orion-extension",
+  
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png", 
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "HazeOver - Privacy-First Theming",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  
+  "background": {
+    "service_worker": "background/background.js",
+    "type": "module"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/orion-content.js"],
+      "css": ["content/orion-theme.css"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "alarms",
+    "theme",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "themes/*.json",
+        "css/*.css",
+        "assets/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  
+  "commands": {
+    "toggle-theme": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+T",
+        "mac": "Command+Shift+T"
+      },
+      "description": "Toggle between light and dark themes"
+    },
+    "privacy-mode": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P"
+      },
+      "description": "Toggle privacy mode"
+    }
+  },
+  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline';"
+  },
+  
+  "orion_specific": {
+    "webkit_optimized": true,
+    "privacy_first": true,
+    "zero_telemetry": true,
+    "hardware_accelerated": true,
+    "ad_blocker_compatible": true,
+    "mobile_support": true
+  },
+  
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "hazeover-orion@themesync.dev"
+    }
+  },
+  
+  "minimum_chrome_version": "88",
+  "minimum_firefox_version": "88"
+}

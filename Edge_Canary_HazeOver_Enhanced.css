@@ -1,0 +1,305 @@
+/* ===== MICROSOFT EDGE CANARY HAZEOVER SYNC - DYNAMIC THEMES ===== */
+/* Automatically adapts Edge Canary's appearance to match your HazeOver focus modes */
+/* Install: Copy content to Edge Canary Custom CSS or use as part of the extension */
+
+/* ===== ROOT VARIABLES FOR EASY CUSTOMIZATION ===== */
+:root {
+  /* Day Mode Colors (07:00-17:30) */
+  --day-bg: #F8F9FA;
+  --day-border: #E9ECEF;
+  --day-accent: #0078d4;
+  --day-text: #2C3E50;
+  --day-sidebar: rgba(248, 249, 250, 0.95);
+  
+  /* Evening Work Colors (17:30-19:00) */
+  --evening-bg: #FFF8F0;
+  --evening-border: #FF8C42;
+  --evening-accent: #E67E22;
+  --evening-text: #8B4513;
+  --evening-sidebar: rgba(255, 140, 66, 0.15);
+  
+  /* Night Mode Colors (19:00-07:00) */
+  --night-bg: #1A1A2E;
+  --night-border: #722F37;
+  --night-accent: #9B59B6;
+  --night-text: #ECF0F1;
+  --night-sidebar: rgba(45, 27, 105, 0.9);
+}
+
+/* ===== TIME-BASED AUTOMATIC SWITCHING ===== */
+/* Day Mode: 7AM - 5PM */
+@media (prefers-color-scheme: light) {
+  body[data-time-mode="day"] {
+    --current-bg: var(--day-bg);
+    --current-border: var(--day-border);
+    --current-accent: var(--day-accent);
+    --current-text: var(--day-text);
+    --current-sidebar: var(--day-sidebar);
+  }
+}
+
+/* Evening Work: 5:30PM - 7PM */
+body[data-time-mode="evening"] {
+  --current-bg: var(--evening-bg);
+  --current-border: var(--evening-border);
+  --current-accent: var(--evening-accent);
+  --current-text: var(--evening-text);
+  --current-sidebar: var(--evening-sidebar);
+}
+
+/* Night Mode: 7PM - 7AM */
+@media (prefers-color-scheme: dark) {
+  body[data-time-mode="night"] {
+    --current-bg: var(--night-bg);
+    --current-border: var(--night-border);
+    --current-accent: var(--night-accent);
+    --current-text: var(--night-text);
+    --current-sidebar: var(--night-sidebar);
+  }
+}
+
+/* ===== MICROSOFT EDGE CANARY UI ELEMENT STYLING ===== */
+
+/* Tab Bar Enhancement - Edge Canary Specific */
+.tab-strip, .tab-bar, [class*="tab-strip"], [class*="tab-bar"],
+div[class*="TabStrip"], div[class*="TabBar"] {
+  background: var(--current-bg) !important;
+  border-bottom: 2px solid var(--current-border) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Individual Tab Styling - Edge Canary */
+.tab, .tab-content, [class*="tab"]:not([class*="tab-strip"]):not([class*="tab-bar"]),
+div[class*="Tab"]:not(div[class*="TabStrip"]) {
+  background: var(--current-bg) !important;
+  border: 1px solid var(--current-border) !important;
+  color: var(--current-text) !important;
+  border-radius: 8px 8px 0 0;
+  margin-right: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Active Tab Highlight - Edge Canary */
+.tab.active, .tab:hover, [class*="tab"].active, [class*="tab"]:hover,
+div[class*="Tab"].active, div[class*="Tab"]:hover {
+  background: var(--current-accent) !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+/* Address Bar Focus Enhancement - Edge Canary */
+.address-bar, .url-bar, input[type="url"], [class*="address"], [class*="url"],
+.search-field, .omnibox, div[class*="OmniboxResultsContainer"],
+input[class*="omnibox"], input[aria-label*="address"] {
+  background: var(--current-bg) !important;
+  border: 2px solid var(--current-border) !important;
+  color: var(--current-text) !important;
+  border-radius: 12px;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+}
+
+.address-bar:focus, .url-bar:focus, input[type="url"]:focus,
+.search-field:focus, .omnibox:focus, input[class*="omnibox"]:focus {
+  border-color: var(--current-accent) !important;
+  box-shadow: 0 0 15px rgba(var(--current-accent), 0.3);
+  outline: none;
+}
+
+/* Toolbar Integration - Edge Canary */
+.toolbar, .navigation-bar, .address-bar-container,
+div[class*="Toolbar"], div[class*="NavigationBar"] {
+  background: var(--current-bg) !important;
+  border-bottom: 1px solid var(--current-border) !important;
+  backdrop-filter: blur(15px);
+}
+
+/* Sidebar Integration - Edge Canary */
+.sidebar, .panel-container, [class*="sidebar"], [class*="panel"],
+div[class*="Sidebar"], div[class*="Panel"] {
+  background: var(--current-sidebar) !important;
+  border-right: 1px solid var(--current-border) !important;
+  backdrop-filter: blur(15px);
+}
+
+/* Sidebar Icons - Edge Canary */
+.sidebar-icon, .panel-icon, [class*="sidebar-icon"], [class*="panel-icon"],
+div[class*="SidebarIcon"], div[class*="PanelIcon"] {
+  color: var(--current-accent) !important;
+  transition: all 0.2s ease;
+}
+
+.sidebar-icon:hover, .panel-icon:hover,
+div[class*="SidebarIcon"]:hover, div[class*="PanelIcon"]:hover {
+  color: var(--current-text) !important;
+  transform: scale(1.1);
+}
+
+/* Edge Collections and Favorites */
+div[class*="Collection"], div[class*="Favorite"],
+.collections-container, .favorites-container {
+  background: var(--current-bg) !important;
+  border: 1px solid var(--current-border) !important;
+  border-radius: 8px;
+  color: var(--current-text) !important;
+}
+
+/* Edge Collections Items */
+.collection-item, .favorite-item,
+div[class*="CollectionItem"], div[class*="FavoriteItem"] {
+  background: var(--current-bg) !important;
+  color: var(--current-text) !important;
+  border-radius: 6px;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+}
+
+.collection-item:hover, .favorite-item:hover,
+div[class*="CollectionItem"]:hover, div[class*="FavoriteItem"]:hover {
+  background: var(--current-accent) !important;
+  color: white !important;
+}
+
+/* Edge Vertical Tabs (if enabled) */
+div[class*="VerticalTab"], .vertical-tab {
+  background: var(--current-bg) !important;
+  border: 1px solid var(--current-border) !important;
+  color: var(--current-text) !important;
+  border-radius: 6px;
+  margin: 2px 0;
+}
+
+div[class*="VerticalTab"]:hover, .vertical-tab:hover {
+  background: var(--current-accent) !important;
+  color: white !important;
+}
+
+/* Status Bar - Edge Canary */
+.status-bar, div[class*="StatusBar"] {
+  background: var(--current-bg) !important;
+  border-top: 1px solid var(--current-border) !important;
+  color: var(--current-text) !important;
+}
+
+/* Context Menus - Edge Canary */
+.context-menu, .dropdown-menu, 
+div[class*="ContextMenu"], div[class*="DropdownMenu"] {
+  background: var(--current-bg) !important;
+  border: 1px solid var(--current-border) !important;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.context-menu-item:hover, 
+div[class*="ContextMenuItem"]:hover {
+  background: var(--current-accent) !important;
+  color: white !important;
+}
+
+/* Edge Canary Dev Tools Integration */
+div[class*="DevTools"], .devtools-container {
+  background: var(--current-bg) !important;
+  color: var(--current-text) !important;
+}
+
+/* ===== SPECIAL FOCUS MODE ENHANCEMENTS ===== */
+
+/* Day Mode: High Contrast for Productivity */
+body[data-time-mode="day"] .tab.active,
+body[data-time-mode="day"] div[class*="Tab"].active {
+  box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+}
+
+/* Evening Work: Warm Glow */
+body[data-time-mode="evening"] .address-bar:focus,
+body[data-time-mode="evening"] input[class*="omnibox"]:focus {
+  box-shadow: 0 0 20px rgba(255, 140, 66, 0.4);
+}
+
+/* Night Mode: Subtle Purple Glow */
+body[data-time-mode="night"] div[class*="Collection"],
+body[data-time-mode="night"] .collections-container {
+  box-shadow: 0 4px 16px rgba(155, 89, 182, 0.2);
+}
+
+/* Edge Canary specific night mode enhancements */
+body[data-time-mode="night"] div[class*="VerticalTab"]:hover {
+  box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
+}
+
+/* ===== SMOOTH TRANSITIONS ===== */
+* {
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease, 
+              color 0.3s ease,
+              box-shadow 0.3s ease !important;
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .tab, .address-bar,
+  div[class*="Tab"], input[class*="omnibox"] {
+    border-width: 3px !important;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+  .tab, div[class*="Tab"] {
+    min-width: 120px;
+  }
+  
+  .sidebar, div[class*="Sidebar"] {
+    width: 200px;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .sidebar, .tab-strip, .collections-container,
+  div[class*="Sidebar"], div[class*="TabStrip"], div[class*="Collection"] {
+    display: none !important;
+  }
+}
+
+/* ===== EDGE CANARY SPECIFIC FEATURES ===== */
+
+/* Workspaces Support */
+div[class*="Workspace"], .workspace-container {
+  background: var(--current-bg) !important;
+  border: 1px solid var(--current-border) !important;
+  color: var(--current-text) !important;
+}
+
+/* Shopping Features */
+div[class*="Shopping"], .shopping-container {
+  background: var(--current-bg) !important;
+  color: var(--current-text) !important;
+}
+
+/* Copilot Integration */
+div[class*="Copilot"], .copilot-container {
+  background: var(--current-sidebar) !important;
+  border: 1px solid var(--current-border) !important;
+}
+
+/* Edge Bar (if enabled) */
+div[class*="EdgeBar"], .edge-bar {
+  background: var(--current-bg) !important;
+  border: 1px solid var(--current-border) !important;
+}
+
+/* Password Manager UI */
+div[class*="PasswordManager"], .password-manager {
+  background: var(--current-bg) !important;
+  color: var(--current-text) !important;
+}
