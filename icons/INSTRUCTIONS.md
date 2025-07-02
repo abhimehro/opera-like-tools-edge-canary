@@ -2,10 +2,10 @@
 
 Create the following Opera-style icon files in this directory:
 
-- `opera-icon-16.png` (16x16 pixels)
-- `opera-icon-32.png` (32x32 pixels)
-- `opera-icon-48.png` (48x48 pixels)
-- `opera-icon-128.png` (128x128 pixels)
+- `icons/icon-16.png` (16x16 pixels)
+- `icons/icon-32.png` (32x32 pixels)
+- `icons/icon-48.png` (48x48 pixels)
+- `icons/icon-128.png` (128x128 pixels)
 
 ## Design Suggestions - Opera Style
 
